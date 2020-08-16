@@ -1,4 +1,5 @@
 type Query {
+  info: String!
   feed(filter: String, skip: Int, take: Int, orderBy: LinkOrderByInput): Feed!
 }
 
@@ -14,12 +15,9 @@ type Mutation {
   vote(linkId: ID!): Vote
 }
 
-type Link {
-  id: ID!
-  description: String!
-  url: String!
-  postedBy: User!
-  votes: [Vote!]!
+type Subscription {
+  newLink: Link
+  newVote: Vote
 }
 
 type AuthPayload {
@@ -34,9 +32,13 @@ type User {
   links: [Link!]!
 }
 
-type Subscription {
-  newLink: Link
-  newVote: Vote
+type Link {
+  id: ID!
+  description: String!
+  url: String!
+  postedBy: User
+  votes: [Vote!]!
+  createdAt: String!
 }
 
 type Vote {
