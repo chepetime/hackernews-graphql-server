@@ -1,5 +1,7 @@
 # Hackernews Node GraphQL
 
+How to GraphQL Tutorial [source](https://www.howtographql.com/graphql-js/0-introduction/)
+
 ## Tech Stack
 
 - `graphql-yoga` (Fully-featured GraphQL server)
