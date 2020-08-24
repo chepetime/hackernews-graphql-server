@@ -1,0 +1,128 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Link",
+      "field": "postedBy",
+      "type": "User",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Link",
+          "field": "postedBy"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Link",
+          "field": "postedBy"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[postedById]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Link",
+          "field": "postedBy"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Link",
+      "field": "votes",
+      "type": "Vote",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Link",
+      "field": "user"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Link",
+      "field": "vote"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "links",
+      "type": "Link",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "Vote",
+      "type": "Vote",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "User",
+      "field": "link"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "User",
+      "field": "vote"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "Vote",
+          "arguments": [
+            {
+              "name": "",
+              "value": "[linkId, userId]"
+            }
+          ]
+        },
+        "directive": "unique"
+      }
+    },
+    {
+      "tag": "DeleteDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "Vote",
+          "arguments": [
+            {
+              "name": "",
+              "value": "[linkId, userId]"
+            },
+            {
+              "name": "name",
+              "value": "\"Vote.linkId_userId_unique\""
+            }
+          ]
+        },
+        "directive": "unique"
+      }
+    }
+  ]
+}

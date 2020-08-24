@@ -2,36 +2,21 @@
   "version": "0.3.14-fixed",
   "steps": [
     {
-      "tag": "CreateModel",
-      "model": "Vote"
-    },
-    {
       "tag": "CreateField",
-      "model": "Vote",
-      "field": "id",
-      "type": "Int",
-      "arity": "Required"
+      "model": "Link",
+      "field": "user",
+      "type": "User",
+      "arity": "Optional"
     },
     {
       "tag": "CreateDirective",
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Vote",
-          "field": "id"
+          "model": "Link",
+          "field": "user"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Vote",
-          "field": "id"
-        },
-        "directive": "default"
+        "directive": "relation"
       }
     },
     {
@@ -40,13 +25,68 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "Vote",
-          "field": "id"
+          "model": "Link",
+          "field": "user"
         },
-        "directive": "default"
+        "directive": "relation"
       },
-      "argument": "",
-      "value": "autoincrement()"
+      "argument": "fields",
+      "value": "[postedById]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Link",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Link",
+      "field": "vote",
+      "type": "Vote",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Link",
+      "field": "User"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Link",
+      "field": "Vote"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "link",
+      "type": "Link",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "vote",
+      "type": "Vote",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "User",
+      "field": "Link"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "User",
+      "field": "Vote"
     },
     {
       "tag": "CreateField",
@@ -97,13 +137,6 @@
     {
       "tag": "CreateField",
       "model": "Vote",
-      "field": "linkId",
-      "type": "Int",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Vote",
       "field": "user",
       "type": "User",
       "arity": "Required"
@@ -148,41 +181,14 @@
       "value": "[id]"
     },
     {
-      "tag": "CreateField",
+      "tag": "DeleteField",
       "model": "Vote",
-      "field": "userId",
-      "type": "Int",
-      "arity": "Required"
+      "field": "Link"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Model",
-          "model": "Vote",
-          "arguments": [
-            {
-              "name": "",
-              "value": "[linkId, userId]"
-            }
-          ]
-        },
-        "directive": "unique"
-      }
-    },
-    {
-      "tag": "CreateField",
-      "model": "Link",
-      "field": "votes",
-      "type": "Vote",
-      "arity": "List"
-    },
-    {
-      "tag": "CreateField",
-      "model": "User",
-      "field": "Vote",
-      "type": "Vote",
-      "arity": "List"
+      "tag": "DeleteField",
+      "model": "Vote",
+      "field": "User"
     }
   ]
 }
